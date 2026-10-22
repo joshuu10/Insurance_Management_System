@@ -1,0 +1,7 @@
+{
+  "name": "@wabantu/api-client",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Placeholder for OpenAPI-generated typed client. Generate after OpenAPI spec stabilizes.",
+  "type": "module"
+}

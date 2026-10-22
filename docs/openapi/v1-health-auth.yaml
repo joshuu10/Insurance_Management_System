@@ -1,0 +1,59 @@
+openapi: 3.1.0
+info:
+  title: Wabantu Insurance API
+  version: 0.1.0
+  description: Phase 0/1 surface — health, auth, me, onboarding. Integrations OFF.
+servers:
+  - url: http://127.0.0.1:8000/api/v1
+paths:
+  /health:
+    get:
+      summary: Health and edition probe
+      responses:
+        '200':
+          description: OK
+  /auth/login:
+    post:
+      summary: Issue Sanctum personal access token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: { type: string, format: email }
+                password: { type: string }
+                device_name: { type: string }
+      responses:
+        '200':
+          description: Token issued
+  /auth/logout:
+    post:
+      security: [{ bearerAuth: [] }]
+      summary: Revoke current token
+      responses:
+        '200':
+          description: Logged out
+  /me:
+    get:
+      security: [{ bearerAuth: [] }]
+      summary: Current user with roles and organization
+      responses:
+        '200':
+          description: User payload
+  /onboarding/organization:
+    put:
+      security: [{ bearerAuth: [] }]
+      summary: Complete intermediary licence onboarding fields
+      responses:
+        '200':
+          description: Organization updated
+        '403':
+          description: Missing tenant.configure
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

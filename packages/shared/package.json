@@ -1,0 +1,9 @@
+{
+  "name": "@wabantu/shared",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./i18n": "./src/i18n/index.js"
+  }
+}
